@@ -70,6 +70,24 @@ function resourceLink(key){
   const [name,url]=sources[key];
   return `<a class="text-link" href="${url}" target="_blank" rel="noopener">${name} ↗</a>`;
 }
+function renderDemo(trackId, lessonId){
+  const id = trackId+'-'+lessonId;
+  const {lang, setup, run, out, explain, task, code} = window.lessonDemos[id];
+  const editable = lang==='javascript';
+  return `<section class="demo" data-demo="${id}" aria-labelledby="demo-${id}">
+    <div class="demo-head"><h3 id="demo-${id}">কোডসহ উদাহরণ</h3><span>${escape(lang)}</span></div>
+    <p>${escape(explain)}</p>
+    <p><b>যা লাগবে</b> · ${escape(setup)}</p>
+    ${editable?`<label class="demo-label" for="editor-${id}">কোড বদলে দেখুন</label><textarea spellcheck="false" maxlength="12000" id="editor-${id}" rows="${Math.min(14, code.split('\n').length+1)}">${escape(code)}</textarea>`:`<pre tabindex="0"><code>${escape(code)}</code></pre>`}
+    <div class="lesson-actions">
+      ${editable?'<button class="button" data-demo-action="run">Run code</button><button class="button secondary" data-demo-action="reset">Reset</button>':''}
+      <button class="button secondary" data-demo-action="copy">Copy code</button>
+    </div>
+    ${editable?'<p><b>আপনার আউটপুট</b></p><pre class="demo-result" tabindex="0" role="log">Run code চাপুন।</pre>':`<p><b>চালানোর উপায়</b> · ${escape(run)}</p>`}
+    <p><b>প্রত্যাশিত ফল</b></p><pre tabindex="0"><code>${escape(out)}</code></pre>
+    <p><b>নিজে বদলে দেখুন</b> · ${escape(task)}</p>
+  </section>`;
+}
 function renderLesson(t,lesson,position,selected){
   const {id,title,learn,practice,example,details:[source,section,steps,question,check]}=lesson;
   const pressed=Boolean(state.done[t.id+'-'+id]);
@@ -80,7 +98,8 @@ function renderLesson(t,lesson,position,selected){
       ${learn?`<p>${learn}</p>`:''}
       ${t.weeks?`<p><strong>Week ${t.start+Math.floor(position*t.weeks/t.lessons.length)}</strong></p>`:''}
       <h3>কী কী শিখবেন</h3><p>${section}</p>
-      <h3>কোথা থেকে পড়বেন</h3><p>${resourceLink(source)}</p>
+      ${renderDemo(t.id, id)}
+      <h3>আরও পড়ুন</h3><p>${resourceLink(source)}</p>
       <h3>কীভাবে শিখবেন</h3><ol>${steps.map(step=>`<li>${step}</li>`).join('')}</ol>
       ${practice?`<h3>আরও অনুশীলন</h3><p>${practice}</p>`:''}
       <h3>উদাহরণ</h3><p>${example}</p>
