@@ -24,10 +24,10 @@
         URL.revokeObjectURL(url);
         send(message, true);
       };
-      const timer = setTimeout(() => stop(lines ? '' : 'কোনো console output পাওয়া যায়নি বা সময়সীমা শেষ হয়েছে।'), 1500);
+      const timer = setTimeout(() => stop(lines ? '' : data.noOutput), 1500);
       worker.onmessage = ({data}) => {
         if (typeof data === 'string' && lines++ < 50) send(data);
-        if (lines === 50) stop('৫০ লাইন পর্যন্ত দেখানো হয়েছে।');
+        if (lines === 50) stop(data.lineLimit);
       };
       worker.onerror = (event) => stop(event.message || 'JavaScript error');
     });
@@ -59,10 +59,10 @@
     };
     activeRuns.set(panel, cleanup);
     addEventListener('message', receive);
-    frame.addEventListener('load', () => frame.contentWindow?.postMessage({code}, '*'), {once:true});
+    frame.addEventListener('load', () => frame.contentWindow?.postMessage({code, noOutput:tr('কোনো console output পাওয়া যায়নি বা সময়সীমা শেষ হয়েছে।','No console output or execution timed out.'), lineLimit:tr('৫০ লাইন পর্যন্ত দেখানো হয়েছে।','Showing the first 50 lines.')}, '*'), {once:true});
     panel.append(frame);
     timer = setTimeout(() => {
-      if (!output.textContent) output.textContent = 'কোড চালানো যায়নি বা সময়সীমা শেষ হয়েছে।';
+      if (!output.textContent) output.textContent = tr('কোড চালানো যায়নি বা সময়সীমা শেষ হয়েছে।','The code could not run or timed out.');
       cleanup();
     }, 2500);
   }
@@ -87,9 +87,9 @@
       case 'copy':
         try {
           await navigator.clipboard.writeText(code);
-          notify('কোড কপি হয়েছে।');
+          notify(tr('কোড কপি হয়েছে।','Code copied.'));
         } catch {
-          notify('কোড সিলেক্ট করে কপি করুন।');
+          notify(tr('কোড সিলেক্ট করে কপি করুন।','Select and copy the code manually.'));
         }
         break;
     }

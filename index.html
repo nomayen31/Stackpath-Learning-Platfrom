@@ -1,31 +1,31 @@
 <!doctype html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="বাংলায় কম্পিউটার সায়েন্স ও সিস্টেম ইঞ্জিনিয়ারিং শেখার ব্যক্তিগত ওয়ার্কস্পেস।">
+<meta name="description" content="A hands-on computer science and systems engineering learning workspace.">
 <title>Stackpath — Learning workspace</title>
 <link rel="stylesheet" href="style.css">
-<script defer src="curriculum.js"></script><script defer src="study-guide.js"></script><script defer src="lesson-demos.js"></script><script defer src="app.js"></script><script defer src="demo-runner.js"></script>
+<script defer src="curriculum.js"></script><script defer src="study-guide.js"></script><script defer src="lesson-demos.js"></script><script defer src="english-lessons.js"></script><script defer src="lithuanian.js"></script><script defer src="app.js"></script><script defer src="demo-runner.js"></script>
 </head>
 <body>
-<a class="skip" href="#content">মূল কনটেন্টে যান</a>
+<a class="skip" href="#content" data-bn="মূল কনটেন্টে যান" data-en="Skip to content">মূল কনটেন্টে যান</a>
 <aside class="sidebar">
-<a class="brand" href="#overview"><b>⧉</b><span>stackpath<small>Learning workspace</small></span></a>
-<p class="nav-title">Workspace</p>
+<a class="brand" href="#overview"><b>⧉</b><span>stackpath<small data-bn="শেখার ওয়ার্কস্পেস" data-en="Learning workspace">শেখার ওয়ার্কস্পেস</small></span></a>
+<p class="nav-title" data-bn="ওয়ার্কস্পেস" data-en="Workspace">ওয়ার্কস্পেস</p>
 <nav id="nav" aria-label="Workspace">
-<a href="#overview"><i>▦</i> Overview</a>
-<a href="#roadmap"><i>⌘</i> Learning Roadmap</a>
-<a href="#practice"><i>◇</i> Practice Labs</a>
-<a href="#library"><i>▤</i> Resource Library</a>
-<a href="#notes"><i>▧</i> My Notes</a>
+<a href="#overview"><i>▦</i><span>Overview</span></a>
+<a href="#roadmap"><i>⌘</i><span>Learning Roadmap</span></a>
+<a href="#practice"><i>◇</i><span>Practice Labs</span></a>
+<a href="#library"><i>▤</i><span>Resource Library</span></a>
+<a href="#notes"><i>▧</i><span>My Notes</span></a>
 </nav>
-<div class="sidebar-bottom"><div class="avatar">S</div><span>Personal workspace<small>Self-paced learning</small></span></div>
+<div class="sidebar-bottom"><div class="avatar">S</div><span><span data-bn="ব্যক্তিগত ওয়ার্কস্পেস" data-en="Personal workspace">ব্যক্তিগত ওয়ার্কস্পেস</span><small data-bn="নিজের গতিতে শিখুন" data-en="Self-paced learning">নিজের গতিতে শিখুন</small></span></div>
 </aside>
 <div class="workspace">
-<header class="topbar"><div class="crumb"><span>Workspace</span><span>/</span><strong id="where">Overview</strong></div><button id="searchOpen" class="search-button"><span>⌕</span> Search lessons <kbd>/</kbd></button></header>
+<header class="topbar"><div class="crumb"><span data-bn="ওয়ার্কস্পেস" data-en="Workspace">ওয়ার্কস্পেস</span><span>/</span><strong id="where">Overview</strong></div><div class="topbar-actions"><label class="language-picker"><span class="visually-hidden" data-bn="ভাষা" data-en="Language">ভাষা</span><select id="language"><option value="en" lang="en" selected>English</option><option value="bn" lang="bn">বাংলা</option><option value="lt" lang="lt">Lietuvių</option></select></label><button id="searchOpen" class="search-button"><span>⌕</span> <span class="search-caption" data-bn="লেসন খুঁজুন" data-en="Search lessons">লেসন খুঁজুন</span> <kbd>/</kbd></button></div></header>
 <main id="content" tabindex="-1"></main>
 </div>
-<dialog id="searchDialog"><div class="dialog-top"><label for="searchInput">Search curriculum</label><button id="searchClose" aria-label="Close">×</button></div><input id="searchInput" type="search" placeholder="Search topics or lessons…"><div id="searchResults"></div></dialog>
+<dialog id="searchDialog"><div class="dialog-top"><label for="searchInput" data-bn="পাঠক্রমে খুঁজুন" data-en="Search curriculum">পাঠক্রমে খুঁজুন</label><button id="searchClose" aria-label="Close">×</button></div><input id="searchInput" type="search" placeholder="Search topics or lessons…"><div id="searchResults"></div></dialog>
 <div id="toast" role="status"></div>
 </body></html>
